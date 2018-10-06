@@ -3,16 +3,19 @@ kind: Deployment
 metadata:
   name: user-service-deployment
   labels:
+    # Istio will user app and version
     app: user-service-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: user-service
+      version: "1.0"
   template:
     metadata:
       labels:
         app: user-service
+        version: "1.0"
     spec:
       containers:
       - name: user-service
@@ -50,6 +53,7 @@ metadata:
   name: user-ui-deployment
   labels:
     app: user-ui-deployment
+    version: "1.0"
 spec:
   replicas: 2
   selector:
@@ -59,6 +63,7 @@ spec:
     metadata:
       labels:
         app: user-ui
+        version: "1.0"
     spec:
       containers:
       - name: user-ui
