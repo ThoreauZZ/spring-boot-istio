@@ -45,14 +45,15 @@ subprojects {
 
     task buildDocker(type: Docker) {
         baseImage = 'openjdk:8-jdk-alpine'
-    //    runCommand('apk add --no-cache curl')
+        //runCommand('apk add --no-cache curl')
         push = project.hasProperty('push')
         tagVersion = jar.version
         addFile {
             from jar
             rename {'app.jar'}
         }
-        entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+        //setEnvironment('JAVA_OPTS',' ')
+        entryPoint(['java', '$JAVA_OPTS', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
     }
     buildDocker.dependsOn(build)
 }
