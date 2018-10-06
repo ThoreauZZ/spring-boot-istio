@@ -6,7 +6,7 @@ metadata:
     # Istio will user app and version
     app: user-service-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: user-service
@@ -55,7 +55,7 @@ metadata:
     app: user-ui-deployment
     version: "1.0"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: user-ui
