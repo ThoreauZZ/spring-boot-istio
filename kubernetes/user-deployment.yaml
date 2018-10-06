@@ -20,6 +20,9 @@ spec:
       containers:
       - name: user-service
         image: registry.cn-hangzhou.aliyuncs.com/my-istio-release/user-service:latest
+        env:
+        - name: JAVA_OPTS
+          value: "-Xmx128m"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -68,6 +71,9 @@ spec:
       containers:
       - name: user-ui
         image: registry.cn-hangzhou.aliyuncs.com/my-istio-release/user-ui:latest
+        env:
+        - name: JAVA_OPTS
+          value: "-Xmx128m"
         ports:
         - containerPort: 8080
         livenessProbe:
