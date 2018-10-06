@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: user-service
-  precedence: 1
+  precedence: 100
   route:
   - labels:
       version: "1.0"
@@ -17,7 +17,7 @@ metadata:
 spec:
   destination:
     name: user-ui
-  precedence: 1
+  precedence: 100
   route:
   - labels:
       version: "1.0"
