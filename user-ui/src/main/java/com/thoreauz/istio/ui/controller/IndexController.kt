@@ -1,18 +1,18 @@
-package com.thoreauz.istio.ui
+package com.thoreauz.istio.ui.controller
 
 import com.thoreauz.istio.ui.service.User
 import com.thoreauz.istio.ui.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
 
 /**
  * 2018/10/5 上午10:12.
  * @author zhaozhou
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 class IndexController {
     @Autowired
@@ -26,8 +26,8 @@ class IndexController {
         return "index"
     }
     @RequestMapping("/greet")
-    fun greet(@RequestParam name:String) :String{
-        return restTemplate!!.getForObject("http://user-service/user/greeting?name="+name, String::class.java)
+    fun greet(@RequestParam name:String) :Object{
+        return restTemplate!!.getForObject("http://user-service/user/greeting?name="+name, Object::class.java)
     }
     @RequestMapping("/user")
     fun getUser() : User {
