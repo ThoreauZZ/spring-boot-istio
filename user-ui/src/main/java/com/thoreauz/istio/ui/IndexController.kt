@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate
  * @author zhaozhou
  */
 @Controller
+@RequestMapping("/user")
 class IndexController {
     @Autowired
     val restTemplate: RestTemplate? = null
@@ -26,7 +27,7 @@ class IndexController {
     }
     @RequestMapping("/greet")
     fun greet(@RequestParam name:String) :String{
-        return restTemplate!!.getForObject("http://user-serivce/user/greeting?name="+name, String::class.java)
+        return restTemplate!!.getForObject("http://user-service/user/greeting?name="+name, String::class.java)
     }
     @RequestMapping("/user")
     fun getUser() : User {
