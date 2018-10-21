@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-deployment-v2
+  labels:
+    # Istio will user app and version
+    app: user-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+      version: "2.0"
+  template:
+    metadata:
+      labels:
+        app: user-service
+        version: "2.0"
+    spec:
+      containers:
+      - name: user-service
+        image: registry.cn-hangzhou.aliyuncs.com/my-istio-release/user-service:latest
+        env:
+        - name: JAVA_OPTS
+          value: "-Xmx128m"
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 90
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
