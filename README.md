@@ -108,7 +108,7 @@ kubectl apply -f rute-userservice-503.yaml
 
 ## 可视化
 ```bash
-# 通过命令把ClusterIP->NodePort。通过nodeport访问
+# 通过命令把ClusterIP->NodePort。通过nodeport访问: 如下依赖关系，链路追踪，流量监控
 kubectl get svc servicegraph -n istio-system -o yaml| sed "s/ClusterIP/NodePort/g"|kubectl apply -f -
 kubectl get svc servicegraph -n istio-system
 kubectl get svc jaeger-query -n istio-system -o yaml| sed "s/ClusterIP/NodePort/g"|kubectl apply -f -
