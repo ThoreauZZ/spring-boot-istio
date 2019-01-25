@@ -68,11 +68,21 @@ git clone https://github.com/ThoreauZZ/spring-boot-istio.git
 cd spring-boot-istio/kubernetes
 kubectl apply -f <(istioctl kube-inject -f kubectl delete -f user-deployment.yaml)
 kubectl get pods
+```
 
-# 内网 ui->service，多次地址不同
-curl $(kubectl get svc |grep user-ui|awk '{print $3}')/user/greet?name=thoreau| jq .
-
-# 外网访问
+master机器上： ui->service，多次地址不同
+```
+curl -s  $(kubectl get svc |grep user-ui|awk '{print $3}')/user/greet?name=thoreau| jq .
+{
+  "id": 4,
+  "content": "Hello, thoreau",
+  "ip": "10.244.0.40",
+  "address": "user-service-deployment-76845bbfd-s6vmr",
+  "time": "2019-01-25 03:18:05"
+}
+```
+外网访问
+```
 cd istio-rules
 kubectl apply -f my-gateway.yaml
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
@@ -105,4 +115,5 @@ kubectl get svc jaeger-query -n istio-system -o yaml| sed "s/ClusterIP/NodePort/
 kubectl get svc prometheus -n istio-system -o yaml| sed "s/ClusterIP/NodePort/g"|kubectl apply -f -
 kubectl get svc grafana -n istio-system -o yaml| sed "s/ClusterIP/NodePort/g"|kubectl apply -f -
 ```
+
 
