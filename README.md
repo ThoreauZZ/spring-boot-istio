@@ -32,14 +32,11 @@ registry.cn-hangzhou.aliyuncs.com/my-istio-release/user-ui:latest
 ```
  
 ## 安装kubernetes
-环境：vitrulbox + vagrant
-下载我的自动换部署脚本  
-https://github.com/ThoreauZZ/configuration/tree/master/vagrant/k8s-istio . 
-根据机器性能修改Vagrantfile . 
-安装k8s最大的麻烦就是墙内无法访问Google镜像的问题，大部分被我换成了国内镜像，如果没有代理 . 
-注释掉install-k8s-common.sh脚本中的HTTP_PROXY="http://192.168.99.1:1087" . 
-
-然后执行vagrant自动安装kubernetes集群： 
+环境：vitrulbox + vagrant    
+1. 下载我的自动换部署脚本:https://github.com/ThoreauZZ/configuration/tree/master/vagrant/k8s-istio .  
+2. 根据机器性能修改Vagrantfile .  
+3. 安装k8s最大的麻烦就是墙内无法访问Google镜像的问题，大部分被我换成了国内镜像，如果没有代理,注释掉install-k8s-common.sh脚本中的HTTP_PROXY="http://192.168.99.1:1087" . 
+4. 然后执行vagrant自动安装kubernetes集群： 
 ```
 vagrant up
 ```
