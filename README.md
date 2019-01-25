@@ -21,6 +21,8 @@
 
 安装docker环境和mvn后执行如下命令构建docker镜像
 ```
+git clone https://github.com/ThoreauZZ/spring-boot-istio.git
+cd spring-boot-istio
 mvn clean package -Pdocker
 ```
 两个镜像已经push到我的aliyun仓库，可以直接用
